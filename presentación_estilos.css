@@ -71,7 +71,6 @@ header{
     }
 }
 
-
 .hero{
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     grid-column: 1/-1;
@@ -79,10 +78,11 @@ header{
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     display: grid;
     grid-template-columns: 55% 45%;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 
     &:hover{
         transform: scale(1.02);
+        box-shadow: 0 15px 30px rgba(0,0,0, 0.3);
     }
 
     .info{
@@ -95,8 +95,8 @@ header{
         .titulo{
             color: white;
             font-size: 38px;
-            margin-bottom: 10px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            text-align: left;
         }
 
         .texto{
