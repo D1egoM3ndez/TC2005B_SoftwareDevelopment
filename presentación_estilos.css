@@ -207,7 +207,7 @@ main{
         border-left: 5px solid #667eea;
         box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         transition: all 0.3s ease;
-
+        
         &:hover{
             transform: translateX(10px);
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);

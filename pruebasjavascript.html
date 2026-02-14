@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos-fundamentos-js.css">
+    <title>Fundamentos de Javascript</title>
+</head>
+<body>
+    <div class = "grid">
+
+        <div class = "header">
+            <h2>Fundamentos de Javascript</h2>
+        </div>
+
+        <div class = "preguntas">
+
+            <h2>Ejercicios Javascript</h2>
+
+            <div class = "question">
+                <h3>Entrada: un número pedido con un prompt. Salida: Una tabla con los números del 1 al número dado con sus cuadrados y cubos. Utiliza document.write para producir la salida</h3>
+                <div class = "respuesta" id = "ej1"></div>
+            </div>
+
+            <div class = "question black">
+                <h3>Entrada: Usando un prompt se pide el resultado de la suma de 2 números generados de manera aleatoria. Salida: La página debe indicar si el resultado fue correcto o incorrecto, y el tiempo que tardó el usuario en escribir la respuesta.</h3>
+                <div class = "respuesta" id = "ej2"></div>
+            </div>
+
+            <div class = "question">
+                <h3>Función: contador. Parámetros: Un arreglo de números. Regresa: La cantidad de números negativos en el arreglo, la cantidad de 0's, y la cantidad de valores mayores a 0 en el arreglo.</h3>
+                <div class = "respuesta" id = "ej3"></div>
+            </div>
+
+            <div class = "question black">
+                <h3>Función: promedios. Parámetros: Un arreglo de arreglos de números. Regresa: Un arreglo con los promedios de cada uno de los renglones de la matriz.</h3>
+                <div class = "respuesta" id = "ej4"></div>
+            </div>
+
+            <div class = "question">
+                <h3>Función: inverso. Parámetros: Un número. Regresa: El número con sus dígitos en orden inverso.</h3>
+                <div class = "respuesta" id = "ej5"></div>
+            </div>
+
+            <div class = "question black">
+                <h3>Solución a problema: </h3>
+                <p>Se hara una calculadora que dados dos números del usuario regresa sus operaciones básicas.</p>
+                <div class = "respuesta" id = "ej6"></div>
+            </div>
+
+        </div>
+
+        <div class = "preguntas">
+
+            <h2>Preguntas de Javascript</h2>
+
+            <div class = "question">
+                <h3>¿Qué diferencias y semejanzas hay entre Java y JavaScript?</h3>
+                <div class = "respuesta">
+                    <h3>Semejanzas</h3>
+                        <ul>
+                            <li>Ambos usan sintaxis con llaves {}.</li>
+                            <li>Ambos utilizan estructuras como if, for y while.</li>
+                            <li>Ambos permiten programación orientada a objetos.</li>
+                            <li>Ambos pueden trabajar con funciones y objetos.</li>
+                        </ul>
+
+                    <h3>Diferencias</h3>
+                        <ul>
+                            <li>Java es compilado; JavaScript es interpretado.</li>
+                            <li>Java tiene tipado estático; JavaScript tiene tipado dinámico.</li>
+                            <li>Java se ejecuta en la JVM; JavaScript se ejecuta en el navegador o en Node.js.</li>
+                            <li>Java es más estricto en su estructura; JavaScript es más flexible.</li>
+                        </ul>
+                </div>
+            </div>
+
+            <div class = "question black">
+                <h3>¿Qué métodos tiene el objeto Date? (Menciona al menos 5*)</h3>
+                <div class = "respuesta">
+                    <ul>
+                        <li><strong>getFullYear()</strong>: Devuelve el año.</li>
+                        <li><strong>getMonth()</strong>: Devuelve el mes (0 - 11).</li>
+                        <li><strong>getDate()</strong>: Devuelve el día del mes.</li>
+                        <li><strong>getDay()</strong>: Devuelve el día de la semana (0 - 6).</li>
+                        <li><strong>getHours()</strong>: Devuelve la hora.</li>
+                        <li><strong>getMinutes()</strong>: Devuelve los minutos.</li>
+                        <li><strong>getTime()</strong>: Devuelve los milisegundos desde el 1 de enero de 1970.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class = "question">
+                <h3>¿Qué métodos tienen los arreglos? (Menciona al menos 5*)</h3>
+                <div class = "respuesta">
+                    <ul>
+                        <li><strong>push()</strong>: Agrega un elemento al final.</li>
+                        <li><strong>pop()</strong>: Elimina el último elemento.</li>
+                        <li><strong>shift()</strong>: Elimina el primer elemento.</li>
+                        <li><strong>unshift()</strong>: Agrega un elemento al inicio.</li>
+                        <li><strong>filter()</strong>: Filtra elementos según una condición.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class = "question black">
+                <h3>¿Cómo se declara una variable con alcance local dentro de una función?</h3>
+                <div class = "respuesta">Let</div>
+            </div>
+
+            <div class = "question">
+                <h3>¿Qué implicaciones tiene utilizar variables globales dentro de funciones?</h3>
+                <div class = "respuesta">
+                    <ul>
+                        <li>Pueden ser modificadas desde cualquier parte del programa.</li>
+                        <li>Generan posibles conflictos de nombres.</li>
+                        <li>Hacen el código menos seguro y más difícil de mantener.</li>
+                        <li>Complican la detección de errores.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class = "preguntas">
+            <h2>Bibliografía</h2>
+
+            <p>
+                Oracle. (2023). <em>The Java™ Tutorials</em>. Oracle Corporation. 
+                https://docs.oracle.com/javase/tutorial/
+            </p>
+
+            <p>
+                Mozilla Developer Network. (2024). <em>JavaScript Guide</em>. MDN Web Docs. 
+                https://developer.mozilla.org/es/docs/Web/JavaScript/Guide
+            </p>
+
+            <p>
+                Mozilla Developer Network. (2024). <em>Date</em>. MDN Web Docs. 
+                https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Date
+            </p>
+
+            <p>
+                Mozilla Developer Network. (2024). <em>Array</em>. MDN Web Docs. 
+                https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array
+            </p>
+        </div>
+
+    </div>
+
+    <script src = "main.js"></script>
+</body>
+</html>
