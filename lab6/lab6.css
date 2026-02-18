@@ -1,0 +1,232 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #141420;
+    color: #cdd6f4;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
+}
+
+/* ── Header ── */
+header {
+    background-color: #1a1a2e;
+    border-bottom: 2px solid rgba(0, 220, 230, 0.5);
+    box-shadow: 0 0 12px rgba(0, 220, 230, 0.2);
+    padding: 1.8rem 3rem;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h2 {
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #00dce6;
+    text-shadow: 0 0 6px rgba(0, 220, 230, 0.5);
+}
+
+nav {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #f2f2f2;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(100, 100, 150, 0.4);
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    color: #141414;
+    background-color: #00dce6;
+    border-color: #00dce6;
+    box-shadow: 0 0 8px rgba(0, 220, 230, 0.35);
+}
+
+/* ── Hero ── */
+.hero {
+    background-color: #181828;
+    background-size: auto, 40px 40px, 40px 40px;
+    height: 100px;
+    border-bottom: 1px solid rgba(0, 220, 230, 0.15);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero p {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #e0e8ff;
+    text-shadow: 0 0 14px rgba(0, 220, 230, 0.2);
+}
+
+/* ── Section / Productos ── */
+section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 2rem 1.5rem 2rem;
+    background-color: #141420;
+}
+
+.producto {
+    background-color: #1a1a2e;
+    border: 1px solid rgba(0, 220, 230, 0.2);
+    width: 700px;
+    height: 600px;
+    padding: 1rem;
+    position: relative;
+    transition: all 0.2s ease;
+
+    .input{
+        width: 200px;
+        font-size: 1.5rem;
+    }
+}
+
+.producto:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 16px rgba(0, 220, 230, 0.2);
+    border-color: rgba(0, 220, 230, 0.5);
+}
+
+.producto img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.3s;
+}
+
+.producto .descripcion {
+    font-size: 1.8rem;
+    color: #f9f9f9;
+    margin-top: 0.6rem;
+    letter-spacing: 1px;
+}
+
+.producto .precio {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #4ddd20;
+    text-shadow: 0 0 6px rgba(77, 221, 32, 0.4);
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ── Costos ── */
+.costos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #181828;
+    border-top: 1px solid rgba(0, 220, 230, 0.15);
+    border-bottom: 1px solid rgba(0, 220, 230, 0.15);
+    flex-wrap: wrap;
+}
+
+.resultado {
+    background-color: #1e1e32;
+    border: 1px solid rgba(0, 220, 230, 0.2);
+    border-radius: 10px;
+    padding: 1.8rem 2rem;
+    flex: 1;
+    max-width: 320px;
+    min-width: 250px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.6rem;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.resultado:hover {
+    border-color: rgba(0, 220, 230, 0.45);
+    box-shadow: 0 6px 28px rgba(0, 220, 230, 0.12);
+    transform: translateY(-3px);
+}
+
+.resultado .titulo {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0, 220, 230, 0.8);
+    font-weight: 700;
+}
+
+.resultado p:not(.titulo) {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #e8eeff;
+    text-shadow: 0 0 8px rgba(220, 230, 255, 0.2);
+}
+
+/* ── Footer ── */
+footer {
+    background-color: #181828;
+    border-top: 1px solid rgba(100, 47, 200, 0.25);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(160, 165, 200, 0.6);
+    font-weight: 600;
+}
+
+footer p:first-child {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: rgba(180, 170, 220, 0.7);
+}

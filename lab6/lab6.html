@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lab6.css">
+    <title>Laboratorio 6</title>
+</head>
+<body>
+
+    <div class = "grid">
+        <header>
+            <h2>Título</h2>
+
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#">Carrito</a>
+                <a href="#">Contacto</a>
+                <a href="#">Ver más</a>
+            </nav>
+        </header>
+
+        <div class = "hero">
+            <p>Descripción de la página</p>
+        </div>
+
+        <section>
+            <div class = "producto">
+                <img src="img1.jpeg" alt="#">
+                <p class = "descripcion">Descripción de imagen</p>
+                <p class = "precio">$500</p>
+                <input type="number" value="0" min="0" max="10" class = "input" id = "input1">
+            </div>
+
+            <div class = "producto">
+                <img src="img2.jpg" alt="#">
+                <p class = "descripcion">Descripción de imagen</p>
+                <p class = "precio">$600</p>
+                <input type="number" value="0" min="0" max="10" class = "input" id = "input2">
+            </div>
+
+            <div class = "producto">
+                <img src="img3.webp" alt="#">
+                <p class = "descripcion">Descripción de imagen</p>
+                <p class = "precio">$700</p>
+                <input type="number" value="0" min="0" max="10" class = "input" id = "input3">
+            </div>
+        </section>
+
+        <div class = "costos">
+            <div class = "resultado">
+                <p class = "titulo">Precio Total</p>
+                <p id = "precio_total"></p>
+            </div>
+
+            <div class = "resultado">
+                <p class = "titulo">IVA</p>
+                <p id = "iva"></p>
+            </div>
+
+            <div class = "resultado">
+                <p class = "titulo">Precio Final</p>
+                <p id = "precio_final"></p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Gracias por visitar</p>
+            <p>@2023 Derechos reservados</p>
+        </footer>
+    </div>
+
+    <script src = "lab6.js"></script>
+</body>
+</html>
