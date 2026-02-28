@@ -1,25 +1,12 @@
-const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
 const bodyParser = require('body-parser');
-
 app.use(bodyParser.urlencoded({extended: false}));
 
-//Middleware
-app.use((request, response, next) => {
-    console.log('Middleware!');
-    next(); //Le permite a la petición avanzar hacia el siguiente middleware
-});
+app.use(express.static('public'));
 
-app.use( '/new', (request, response, next) => {
-    response.send("Aqui se va a crear un nuevo personaje");
-})
+const rutas_pokemon = require('./routes/pokemon.routes');
+app.use('/', rutas_pokemon);
 
-app.use((request, response, next) => {
-    console.log('Otro middleware!');
-    response.send('¡Hola mundo!'); //Manda la respuesta
-});
-
-app.listen(3000); 
-
+app.listen(3000);
