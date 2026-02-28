@@ -129,7 +129,7 @@ router.get('/wiki/:nombre', (request, response, next) => {
                     <div class="wiki-number">${encontrado.numero}</div>
                     <h2 class="wiki-name">${encontrado.nombre}</h2>
                     <p class="wiki-tipo">Tipo: ${encontrado.tipo}</p>
-                    <p class="wiki-desc">${encontrado.descripcion || 'Descripción no disponible'}</p>
+                    <p class="wiki-desc">${encontrado.descripcion}</p>
                 </div>
             </div>
         `;
