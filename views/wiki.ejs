@@ -1,0 +1,19 @@
+<%- include('includes/_header') %>
+
+<% if (pokemon) { %>
+
+        <a class="btn-link" href="/">← Regresar</a>
+
+        <div class="wiki-card">
+            <img class="wiki-img" src= <%= pokemon.imagen%> alt= <%= pokemon.nombre%>>
+
+            <div class="wiki-info">
+                <div class="wiki-number"><%= pokemon.numero %></div>
+                <h2 class="wiki-name"><%= pokemon.nombre %></h2>
+                <p class="wiki-tipo">Tipo: <%= pokemon.tipo %></p>
+                <p class="wiki-desc"><%= pokemon.descripcion %></p>
+            </div>
+        </div>
+    <% } %>
+
+<%- include('includes/_footer') %>

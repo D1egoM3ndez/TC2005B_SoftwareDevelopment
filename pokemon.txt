@@ -1,1 +1,0 @@
-{"nombre":"Bulbasaur","tipo":"Planta","numero":"#001","imagen":"https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png","descripcion":"Lleva un bulbo en el lomo desde que nace. A medida que el Pokémon crece, el bulbo también va haciéndose más grande. "}
