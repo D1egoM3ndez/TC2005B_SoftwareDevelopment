@@ -1,0 +1,26 @@
+{
+  "name": "tc2005b_softwaredevelopment",
+  "version": "1.0.0",
+  "description": "Laboratorios nuevos",
+  "homepage": "https://github.com/D1egoM3ndez/TC2005B_SoftwareDevelopment#readme",
+  "bugs": {
+    "url": "https://github.com/D1egoM3ndez/TC2005B_SoftwareDevelopment/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/D1egoM3ndez/TC2005B_SoftwareDevelopment.git"
+  },
+  "license": "ISC",
+  "author": "Diego Mendez",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1"
+  }
+}

@@ -1,0 +1,17 @@
+<%- include('includes/_header') %>
+
+    <a class="btn-link" href="/new">Agregar Pokémon</a>
+        <div class="grid">
+
+    <% for (let poke of pokedex) { %>
+        <div class="card">
+            <img class="card-img" src= <%= poke.imagen%> alt=<%= poke.nombre%>>
+            <div class="card-body">
+                <div class="card-name"><%= poke.nombre%></div>
+                <div class="card-number"><%= poke.numero%></div>
+                <a href="/wiki/<%= poke.nombre%>">Ver más</a>
+            </div>
+        </div>
+    <% } %>
+
+<%- include('includes/_footer') %>
