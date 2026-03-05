@@ -13,8 +13,19 @@ app.use(bodyParser.urlencoded({extended: false}));
 const rutas_pokemon = require('./routes/pokemon.routes');
 app.use('/', rutas_pokemon);
 
+const users_routes = require('./routes/user.routes');
+app.use('/user', users_routes);
+
 app.use((request, response, next) => {
     response.status(404).send("La ruta no existe");
-})
+});
+
+const session = require('express-session');
+
+app.use(session({
+    secret: 'mi string secreto que debe ser un string aleatorio muy largo, no como éste', 
+    resave: false, //La sesión no se guardará en cada petición, sino sólo se guardará si algo cambió 
+    saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
+}));
 
 app.listen(3000);

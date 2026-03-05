@@ -9,6 +9,8 @@ exports.post_new = (request, response, next) => {
 
     pokemon.save();
 
+    response.setHeader('Set-Cookie', `ultimo_pokemon_guardado=${pokemon.nombre}; Secure`);
+
     response.redirect('/');
 };
 
@@ -24,6 +26,8 @@ exports.get_wiki = (req, res) => {
 
 exports.get_inicio = (request, response, next) => {
     const pokemones = Pokedex.fetchAll();
+
+    console.log(request.get('Cookie'));
 
     response.render('list', {pokedex: pokemones});
 };
