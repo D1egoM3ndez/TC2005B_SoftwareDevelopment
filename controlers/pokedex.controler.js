@@ -3,18 +3,31 @@ const Tipo = require('../models/tipo.model');
 
 exports.get_new = (request, response, next) => {
     response.render('new', {
+        csrfToken: request.csrfToken(),
         username: request.session.username || '',
     });
 };
 
-exports.post_new = (request, response, next) => {
-    const pokemon = new Pokedex (request.body.nombre, request.body.tipo, request.body.numero, request.body.imagen, request.body.descripcion);
+exports.post_new = async (request, response, next) => {
+    try {
 
-    pokemon.save().then(() => {
-        return response.redirect('/personajes');
-    }).catch((error) => {next(error)});
+        const tipoId = await Tipo.getOrCreate(request.body.tipo);
 
-    response.redirect('/');
+        const pokemon = new Pokedex(
+            request.body.nombre,
+            tipoId,
+            request.body.numero,
+            request.body.imagen,
+            request.body.descripcion
+        );
+
+        await pokemon.save();
+
+        return response.redirect('/');
+
+    } catch (error) {
+        next(error);
+    }
 };
 
 exports.get_wiki = (req, res) => {
@@ -40,6 +53,7 @@ exports.get_inicio = (request, response, next) => {
     console.log(request.session.username);
     Pokedex.fetchAll().then(([rows, fieldData]) => {
         return response.render('list', {
+            csrfToken: request.csrfToken(),
             username: request.session.username || '',
             pokedex: rows,
         }); 

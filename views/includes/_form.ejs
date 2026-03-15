@@ -1,6 +1,7 @@
 <a class="btn-link" href="/">← Regresar</a>
 <h2 class="form-title">Nuevo Pokémon</h2>
 <form class="poke-form" action="/new" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
     <input name="nombre" placeholder="Nombre" type="text" required>
     <input name="tipo" placeholder="Tipo" type="text" required>
     <input name="numero" placeholder="#Número" type="text" required>

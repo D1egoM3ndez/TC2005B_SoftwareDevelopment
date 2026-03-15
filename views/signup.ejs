@@ -1,0 +1,22 @@
+<%- include('includes/_header') %>
+<%- include('includes/_error') %>
+
+<h2 class="form-title">Crear cuenta</h2>
+<form class="poke-form" action="/user/signup" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+
+    <input id="username" name="username" type="text" placeholder="Nombre de usuario" required>
+
+    <input id="nombre" name="nombre" type="text" placeholder="Nombre completo" required>
+
+    <input id="correo" name="correo" type="email" placeholder="Correo electrónico" required>
+
+    <input id="password" name="password" type="password" placeholder="Contraseña" required>
+
+    <input id="password_confirm" name="password_confirm" type="password" placeholder="Confirmar contraseña" required>
+
+    <button type="submit">Registrarse</button>
+
+</form>
+
+<%- include('includes/_footer') %>

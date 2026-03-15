@@ -17,6 +17,10 @@ app.use(session({
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 
+const csrf = require('csurf');
+const csrfProtection = csrf();
+app.use(csrfProtection); 
+
 const rutas_pokemon = require('./routes/pokemon.routes');
 app.use('/', rutas_pokemon);
 
@@ -31,7 +35,7 @@ app.use((request, response, next) => {
     response.status(404).send("La ruta no existe");
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en puerto ${PORT}`);
