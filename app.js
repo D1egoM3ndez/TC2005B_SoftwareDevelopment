@@ -23,8 +23,16 @@ app.use('/', rutas_pokemon);
 const users_routes = require('./routes/user.routes');
 app.use('/user', users_routes);
 
+app.use((error, request, response, next) => {
+    response.status(500).send(`Error interno del servidor: ${error.stack}`);
+});
+
 app.use((request, response, next) => {
     response.status(404).send("La ruta no existe");
 });
 
-app.listen(3000);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en puerto ${PORT}`);
+});

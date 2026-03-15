@@ -1,4 +1,5 @@
 const Pokedex = require('../models/pokedex.model');
+const Tipo = require('../models/tipo.model');
 
 exports.get_new = (request, response, next) => {
     response.render('new', {
@@ -9,7 +10,9 @@ exports.get_new = (request, response, next) => {
 exports.post_new = (request, response, next) => {
     const pokemon = new Pokedex (request.body.nombre, request.body.tipo, request.body.numero, request.body.imagen, request.body.descripcion);
 
-    pokemon.save();
+    pokemon.save().then(() => {
+        return response.redirect('/personajes');
+    }).catch((error) => {next(error)});
 
     response.redirect('/');
 };
@@ -17,22 +20,30 @@ exports.post_new = (request, response, next) => {
 exports.get_wiki = (req, res) => {
     const nombreBusqueda = req.params.nombre;
 
-    const encontrado = Pokedex.fetchAll().find(p =>
-        p.nombre.toLowerCase() === nombreBusqueda.toLowerCase()
-    );
+    Pokedex.fetchOne(nombreBusqueda)
+        .then(([rows, fieldData]) => {
 
-    res.render('wiki', { 
-        pokemon: encontrado,
-        username: req.session.username || '',
-    });
+        const encontrado = rows.find(p =>
+            p.nombre.toLowerCase() === nombreBusqueda.toLowerCase()
+        );
+
+        res.render('wiki', {
+            pokemon: encontrado,
+            username: req.session.username || '',
+        });
+
+    })
+        .catch(error => next(error));
 };
 
 exports.get_inicio = (request, response, next) => {
     console.log(request.session.username);
-    const pokemones = Pokedex.fetchAll();
-
-    response.render('list', {
-        username: request.session.username || '',
-        pokedex: pokemones,
-    }); 
+    Pokedex.fetchAll().then(([rows, fieldData]) => {
+        return response.render('list', {
+            username: request.session.username || '',
+            pokedex: rows,
+        }); 
+    }).catch((error) => {
+        next(error);
+    });
 };

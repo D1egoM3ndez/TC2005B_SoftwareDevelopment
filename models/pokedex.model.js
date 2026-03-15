@@ -1,29 +1,7 @@
-const pokedex = [
-    {
-        nombre: "Charizard",
-        tipo: "Fuego",
-        numero: "#006",
-        imagen: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png",
-        descripcion: "Charizard vuela por los cielos en busca de rivales poderosos. Exhala llamas tan calientes que pueden derretir cualquier cosa. Nunca dirige su fuego feroz hacia un oponente más débil que él."
-    },
-    {
-        nombre: "Pikachu",
-        tipo: "Eléctrico",
-        numero: "#025",
-        imagen: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
-        descripcion: "Pikachu almacena electricidad en las bolsas de sus mejillas. Cuando se encuentra con algo nuevo o se emociona, puede liberar descargas eléctricas de alto voltaje. Si se enfada, descarga toda la energía acumulada de una sola vez."
-    },
-    {
-        nombre: "Squirtle",
-        tipo: "Agua",
-        numero: "#007",
-        imagen: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
-        descripcion: "Squirtle se protege dentro de su resistente caparazón y dispara agua a presión para atacar a sus rivales. Cuando retrae su largo cuello, puede lanzar potentes chorros de agua con gran precisión."
-    },
-];
+const db = require('../util/database');
 
 module.exports = class Pokedex {
-    //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
+
     constructor(nnombre, ntipo, nnumero, nimagen, ndescripcion) {
         this.nombre = nnombre;
         this.tipo = ntipo;
@@ -31,13 +9,26 @@ module.exports = class Pokedex {
         this.imagen = nimagen;
         this.descripcion = ndescripcion;
     }
-    //Este método servirá para guardar de manera persistente el nuevo objeto. 
+
     save() {
-        pokedex.push(this);
+        return db.execute(
+            'INSERT INTO pokemon (nombre, tipo_id, numero, imagen, descripcion) VALUES (?, ?, ?, ?, ?)',
+            [this.nombre, this.tipo, this.numero, this.imagen, this.descripcion]
+        );
     }
-    //Este método servirá para devolver los objetos del almacenamiento persistente.
+
     static fetchAll() {
-        return pokedex;
+        return db.execute('SELECT * FROM pokemon');
     }
+
+    static fetchOne(nombre) {
+    return db.execute(
+        `SELECT p.nombre, p.numero, p.descripcion, p.imagen, t.tipo
+        FROM pokemon p
+        JOIN tipo_pokemon t ON p.tipo_id = t.id
+        WHERE LOWER(p.nombre) = LOWER(?)`,
+        [nombre]
+    );
+}
 
 }
