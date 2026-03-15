@@ -1,15 +1,15 @@
 const Pokedex = require('../models/pokedex.model');
 
 exports.get_new = (request, response, next) => {
-    response.render('new');
+    response.render('new', {
+        username: request.session.username || '',
+    });
 };
 
 exports.post_new = (request, response, next) => {
     const pokemon = new Pokedex (request.body.nombre, request.body.tipo, request.body.numero, request.body.imagen, request.body.descripcion);
 
     pokemon.save();
-
-    response.setHeader('Set-Cookie', `ultimo_pokemon_guardado=${pokemon.nombre}; Secure`);
 
     response.redirect('/');
 };
@@ -21,13 +21,18 @@ exports.get_wiki = (req, res) => {
         p.nombre.toLowerCase() === nombreBusqueda.toLowerCase()
     );
 
-    res.render('wiki', { pokemon: encontrado });
+    res.render('wiki', { 
+        pokemon: encontrado,
+        username: req.session.username || '',
+    });
 };
 
 exports.get_inicio = (request, response, next) => {
+    console.log(request.session.username);
     const pokemones = Pokedex.fetchAll();
 
-    console.log(request.get('Cookie'));
-
-    response.render('list', {pokedex: pokemones});
+    response.render('list', {
+        username: request.session.username || '',
+        pokedex: pokemones,
+    }); 
 };

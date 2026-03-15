@@ -1,0 +1,17 @@
+<%- include('includes/_header') %>
+
+<div class="container">
+
+  <h2 class="form-title">Iniciar sesión</h2>
+  <form class="poke-form" action="/user/login" method="POST">
+
+    <input id="username" name="username" type="text" placeholder="Nombre de usuario" required>
+
+    <input id="password" name="password" type="password" placeholder="Contraseña" required>
+
+    <button type="submit">Entrar</button>
+
+  </form>
+</div>
+
+<%- include('includes/_footer') %>

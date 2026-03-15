@@ -1,92 +1,311 @@
 * {
     box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background: #e8eaf6;
-  font-family: 'Nunito', sans-serif;
-  min-height: 100vh;
-  padding: 40px 20px;
+    background: #e8eaf6;
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    padding: 0;
 }
 
+/* ── Navbar ─────────────────────────────────── */
+.navbar {
+    background: linear-gradient(135deg, #7b5cf0, #6c3fc5);
+    box-shadow: 0 2px 12px rgba(108, 63, 197, 0.35);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+}
+
+.navbar-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar-logo {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: white;
+    text-decoration: none;
+    background: none;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    display: inline;
+    flex-shrink: 0;
+}
+
+.navbar-logo:hover { opacity: 0.85; }
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+}
+
+.navbar-auth {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-item {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: none;
+    width: auto;
+    height: auto;
+    margin: 0;
+    transition: background 0.2s, color 0.2s;
+    display: inline;
+}
+
+.navbar-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.nav-btn {
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 7px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    width: auto;
+    height: auto;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-btn.signup {
+    background: white;
+    color: #6c3fc5;
+}
+
+.nav-btn.signup:hover { background: #f0eaff; }
+
+.nav-btn.login {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.nav-btn.login:hover { background: rgba(255, 255, 255, 0.25); }
+
+.nav-btn.logout {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-btn.logout:hover {
+    background: rgba(255, 0, 0, 0.15);
+    color: #ffaaaa;
+    border-color: rgba(255, 100, 100, 0.3);
+}
+
+/* ── Contenido ──────────────────────────────── */
 .container {
-  max-width: 860px;
-  margin: 0 auto;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
 h1 {
-  text-align: center;
-  font-size: 2.4rem;
-  font-weight: 900;
-  color: #6c3fc5;
-  margin-bottom: 36px;
-  letter-spacing: -0.5px;
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #6c3fc5;
+    margin-bottom: 36px;
+    letter-spacing: -0.5px;
 }
 
-a{
-  display: inline-flex;
-  text-decoration: none;
-  background-color: #6c3fc5;
-  color: white;
-  font-size: 1rem;
-  width: 200px;
-  margin-bottom: 20px;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  height: 30px;
-  border-radius: 10px;
+h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #6c3fc5;
+    margin-bottom: 36px;
+    letter-spacing: -0.5px;
 }
 
+/* ── Botón genérico ─────────────────────────── */
+a {
+    display: inline-flex;
+    text-decoration: none;
+    background-color: #6c3fc5;
+    color: white;
+    font-size: 1rem;
+    width: 200px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    height: 30px;
+    border-radius: 10px;
+}
+
+/* ── Grid ───────────────────────────────────── */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
 }
 
+/* ── Card ───────────────────────────────────── */
 .card {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(108, 63, 197, 0.12);
-  transition: transform 0.25s, box-shadow 0.25s;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(108, 63, 197, 0.12);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
 
-  a{
+.card a {
     background-color: #4fc3f7;
     color: #1a1a2e;
     border: none;
     margin-top: 10px;
-  }
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(108, 63, 197, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(108, 63, 197, 0.2);
 }
 
 .card-img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  display: block;
-  background: #f0eaff;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    background: #f0eaff;
 }
 
 .card-body {
-  padding: 14px 16px 18px;
-  background: linear-gradient(135deg, #7b5cf0, #6c3fc5);
+    padding: 14px 16px 18px;
+    background: linear-gradient(135deg, #7b5cf0, #6c3fc5);
 }
 
 .card-name {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: white;
-  margin-bottom: 3px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 3px;
 }
 
 .card-number {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.65);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Formulario ─────────────────────────────── */
+.form-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #6c3fc5;
+    margin-bottom: 20px;
+}
+
+.poke-form {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 16px rgba(108, 63, 197, 0.12);
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.poke-form input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e0d7f7;
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.poke-form input:focus { border-color: #7b5cf0; }
+
+.poke-form button {
+    padding: 11px;
+    background: linear-gradient(135deg, #7b5cf0, #6c3fc5);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.poke-form button:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+}
+
+/* ── Wiki card ──────────────────────────────── */
+.wiki-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(108, 63, 197, 0.12);
+    border: 1px solid #d8d4f0;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 28px;
+    margin-top: 8px;
+}
+
+.wiki-img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: #f0eaff;
+    border-radius: 12px;
+}
+
+.wiki-number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #9b8ec4;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+
+.wiki-name {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #6c3fc5;
+    margin-bottom: 14px;
+}
+
+.wiki-desc {
+    font-size: 0.95rem;
+    color: #4a4a6a;
+    line-height: 1.7;
 }

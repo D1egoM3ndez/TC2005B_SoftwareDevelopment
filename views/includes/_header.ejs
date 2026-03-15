@@ -8,5 +8,26 @@
     <link rel="stylesheet" href="/pokedex.css">
 </head>
 <body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a class="navbar-logo" href="/">Pokédex</a>
+
+            <div class="navbar-links">
+                <a class="navbar-item" href="/">Inicio</a>
+                <a class="navbar-item" href="/new">Agregar</a>
+            </div>
+
+            <div class="navbar-auth">
+                <% if (username == '') { %> 
+                    <a class="nav-btn login"  href="/user/login">Log in</a>
+                <% } else { %> 
+                    <a class="nav-btn logout" href="/user/logout">Log out</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <h1>Pokédex</h1>
