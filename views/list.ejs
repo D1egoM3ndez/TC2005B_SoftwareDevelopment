@@ -1,7 +1,12 @@
 <%- include('includes/_header') %>
 
-    <a class="btn-link" href="/new">Agregar Pokémon</a>
-        <div class="grid">
+    <% for (let permiso of permisos) { %>
+        <% if (permiso.nombre_privilegio == 'crear_personajes') { %>
+        <a class="btn-link" href="/new">Agregar Pokémon</a>
+        <% } %>
+    <% } %>
+
+    <div class="grid">
 
     <% for (let poke of pokedex) { %>
         <div class="card">

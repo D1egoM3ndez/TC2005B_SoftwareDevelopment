@@ -10,8 +10,9 @@ USE pokedex;
 -- --------------------------------------------------------
 
 CREATE TABLE `tipo_pokemon` (
-    `id` int(11) NOT NULL,
-    `tipo` varchar(100) NOT NULL
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `tipo` varchar(100) NOT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `tipo_pokemon` (`id`, `tipo`) VALUES
@@ -24,28 +25,32 @@ INSERT INTO `tipo_pokemon` (`id`, `tipo`) VALUES
 -- --------------------------------------------------------
 
 CREATE TABLE `pokemon` (
-    `id` int(11) NOT NULL,
+    `id` int(11) NOT NULL AUTO_INCREMENT,
     `nombre` varchar(100) NOT NULL,
     `numero` varchar(10) NOT NULL,
     `descripcion` varchar(500) NOT NULL,
     `tipo_id` int(11) NOT NULL,
     `imagen` varchar(500) DEFAULT NULL,
-    `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+    `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY (`id`),
+    KEY `tipo_id` (`tipo_id`),
+    CONSTRAINT `pokemon_ibfk_1`
+        FOREIGN KEY (`tipo_id`) REFERENCES `tipo_pokemon` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `pokemon` (`id`, `nombre`, `numero`, `descripcion`, `tipo_id`, `imagen`) VALUES
-(1, 'Charizard', '#006',
-'Charizard vuela por los cielos en busca de rivales poderosos. Exhala llamas tan calientes que pueden derretir cualquier cosa. Nunca dirige su fuego feroz hacia un oponente más débil que él.',
+INSERT INTO `pokemon` (`nombre`, `numero`, `descripcion`, `tipo_id`, `imagen`) VALUES
+('Charizard', '#006',
+'Charizard vuela por los cielos en busca de rivales poderosos.',
 1,
 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png'),
 
-(2, 'Pikachu', '#025',
-'Pikachu almacena electricidad en las bolsas de sus mejillas. Cuando se encuentra con algo nuevo o se emociona, puede liberar descargas eléctricas de alto voltaje.',
+('Pikachu', '#025',
+'Pikachu almacena electricidad en las bolsas de sus mejillas.',
 2,
 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png'),
 
-(3, 'Squirtle', '#007',
-'Squirtle se protege dentro de su resistente caparazón y dispara agua a presión para atacar a sus rivales.',
+('Squirtle', '#007',
+'Squirtle se protege dentro de su resistente caparazón.',
 3,
 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png');
 
@@ -58,40 +63,91 @@ CREATE TABLE `usuarios` (
     `nombre` varchar(100) NOT NULL,
     `password` varchar(500) NOT NULL,
     `correo` varchar(100) NOT NULL,
-    `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+    `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
--- Índices
--- --------------------------------------------------------
-
-ALTER TABLE `pokemon`
-    ADD PRIMARY KEY (`id`),
-    ADD KEY `tipo_id` (`tipo_id`);
-
-ALTER TABLE `tipo_pokemon`
-    ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `usuarios`
-    ADD PRIMARY KEY (`username`);
+-- Usuario Diego
+INSERT INTO `usuarios`
+(`username`,`nombre`,`password`,`correo`)
+VALUES
+('D1egoM3ndez','Diego','12345','diegommor@gmail.com');
 
 -- --------------------------------------------------------
--- AUTO_INCREMENT
+-- Tabla de roles
 -- --------------------------------------------------------
 
-ALTER TABLE `pokemon`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+CREATE TABLE `roles` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `nombre_rol` varchar(50) NOT NULL,
+    `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `tipo_pokemon`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+INSERT INTO `roles` (`id`,`nombre_rol`) VALUES
+(1,'entrenador'),
+(2,'administrador');
 
 -- --------------------------------------------------------
--- Llaves foráneas
+-- Tabla de privilegios
 -- --------------------------------------------------------
 
-ALTER TABLE `pokemon`
-    ADD CONSTRAINT `pokemon_ibfk_1`
-    FOREIGN KEY (`tipo_id`)
-    REFERENCES `tipo_pokemon` (`id`);
+CREATE TABLE `privilegios` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `nombre_privilegio` varchar(100) NOT NULL,
+    `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `privilegios` (`id`,`nombre_privilegio`) VALUES
+(1,'ver_pokemon'),
+(2,'crear_pokemon'),
+(3,'editar_pokemon'),
+(4,'eliminar_pokemon');
+
+-- --------------------------------------------------------
+-- Tabla roles → privilegios
+-- --------------------------------------------------------
+
+CREATE TABLE `posee` (
+    `id_rol` int(11) NOT NULL,
+    `id_privilegio` int(11) NOT NULL,
+    `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY (`id_rol`,`id_privilegio`),
+    KEY `id_privilegio` (`id_privilegio`),
+    CONSTRAINT `posee_ibfk_1`
+        FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`),
+    CONSTRAINT `posee_ibfk_2`
+        FOREIGN KEY (`id_privilegio`) REFERENCES `privilegios` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Permisos
+INSERT INTO `posee` VALUES
+(1,1,NOW()), -- entrenador solo puede ver
+(2,1,NOW()),
+(2,2,NOW()),
+(2,3,NOW()),
+(2,4,NOW());
+
+-- --------------------------------------------------------
+-- Tabla usuarios → roles
+-- --------------------------------------------------------
+
+CREATE TABLE `tiene` (
+    `id_usuario` varchar(50) NOT NULL,
+    `id_rol` int(11) NOT NULL,
+    `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY (`id_usuario`,`id_rol`),
+    KEY `id_rol` (`id_rol`),
+    CONSTRAINT `tiene_ibfk_1`
+        FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`username`),
+    CONSTRAINT `tiene_ibfk_2`
+        FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Diego es administrador
+INSERT INTO `tiene`
+VALUES
+('D1egoM3ndez',2,NOW());
 
 COMMIT;

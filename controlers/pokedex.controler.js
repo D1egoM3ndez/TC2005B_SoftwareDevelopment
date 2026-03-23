@@ -50,10 +50,11 @@ exports.get_wiki = (req, res) => {
 };
 
 exports.get_inicio = (request, response, next) => {
-    console.log(request.session.username);
+    console.log(request.session.permisos);
     Pokedex.fetchAll().then(([rows, fieldData]) => {
         return response.render('list', {
             csrfToken: request.csrfToken(),
+            permisos: request.session.permisos || [],
             username: request.session.username || '',
             pokedex: rows,
         }); 

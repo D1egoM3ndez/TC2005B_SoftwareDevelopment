@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const db = require('../util/database');
 const bcrypt = require('bcrypt');
 
 exports.get_login = (request, response, next) => {
@@ -12,15 +13,21 @@ exports.get_login = (request, response, next) => {
 };
 
 exports.post_login = (request, response, next) => {
-    User.fetchOne(request.body.username).then(([rows, fieldData]) => {
-        if (rows.length > 0) {
-            bcrypt.compare(request.body.password, rows[0].password).then((doMatch) => {
+    User.fetchOne(request.body.username).then(([usuarios, fieldData]) => {
+        if (usuarios.length > 0) {
+            bcrypt.compare(request.body.password, usuarios[0].password).then((doMatch) => {
                 if(doMatch) {
                     request.session.isLoggedIn = true;
                     request.session.username = request.body.username;
-                    return request.session.save(() => {
-                        return response.redirect('/');
-                    }); 
+                    User.getPermisos(request.body.username).then(([permisos, fieldData]) => {
+                        request.session.permisos = permisos;
+                        return request.session.save(() => {
+                            return response.redirect('/');
+                        }); 
+                    }).catch((error) => {
+                        console.log(error);
+                        next(error);
+                    });
                 } else {
                     request.session.error = "Usario y/o contraseña no coinciden";
                     return response.redirect('/user/login');
@@ -56,17 +63,36 @@ exports.get_signup = (request, response, next) => {
 };
 
 exports.post_signup = (request, response, next) => {
+
     if (request.body.password != request.body.password_confirm) {
         request.session.error = 'Las contraseñas no coinciden';
         return response.redirect('/user/signup');
-    } else {
-        const user = new User(
-            request.body.username, request.body.nombre, request.body.password, request.body.correo);
-        user.save().then(() => {
-            return response.redirect('/user/login');
-        }).catch((error) => {
-            console.log(error);
-            next(error);
-        });
     }
+
+    const user = new User(
+        request.body.username,
+        request.body.nombre,
+        request.body.password,
+        request.body.correo
+    );
+
+    user.save()
+    .then(() => {
+
+        return db.execute(
+            "INSERT INTO tiene (id_usuario, id_rol) VALUES (?, 1)",
+            [request.body.username]
+        );
+
+    })
+    .then(() => {
+
+        return response.redirect('/user/login');
+
+    })
+    .catch((error) => {
+        console.log(error);
+        next(error);
+    });
+
 };
