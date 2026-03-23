@@ -17,7 +17,7 @@ exports.post_new = async (request, response, next) => {
             request.body.nombre,
             tipoId,
             request.body.numero,
-            request.body.imagen,
+            request.file.filename,
             request.body.descripcion
         );
 
