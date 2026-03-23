@@ -18,7 +18,7 @@ exports.post_new = async (request, response, next) => {
             tipoId,
             request.body.numero,
             request.file.filename,
-            request.body.descripcion
+            request.body.descripcion,
         );
 
         await pokemon.save();
